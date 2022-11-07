@@ -6,67 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-  <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-messaging.js"></script>
-  <script type="text/javascript">
-    try {
-      if (!firebase.apps.length) {
-        const firebaseConfig = {
-          apiKey: "AIzaSyAu8d1aof077dtxusuzpqe3HrPfAO1g3eI",
-          authDomain: "testing-firebase-notifications.firebaseapp.com",
-          projectId: "testing-firebase-notifications",
-          storageBucket: "testing-firebase-notifications.appspot.com",
-          messagingSenderId: "1054762658875",
-          appId: "1:1054762658875:web:17dc4595c98ba937cac01e",
-        };
-        firebase.initializeApp(firebaseConfig);
-      }
 
-      const messaging = firebase.messaging();
-
-      messaging.onMessage((payload) => {
-        console.log('Message received. ', payload);
-
-        const notificationTitle = 'OnMessage Title';
-        const notificationOptions = {
-          body: 'OnMessage body.'
-        };
-
-        return self.registration.showNotification(notificationTitle, notificationOptions);
-      });
-
-      function resetUI() {
-        const vapidKey = 'BLOjYR6_W7SCWT3iloqWTuZjHdesGtTTdr4zVWU0JjeyebtKGl1exIL7f3nIqy6pZDTLTD-o0bTEdAYYGA-Qm_0'; //from firebase project settings
-        messaging.getToken({ vapidKey: vapidKey }).then((currentToken) => {
-          console.log("currentToken", currentToken);
-          if (currentToken) {
-            //..
-          } else {
-            console.log('No registration token available. Request permission to generate one.');
-            requestPermission();
-          }
-        }).catch((err) => {
-          console.log('An error occurred while retrieving token. ', err);
-        });
-      }
-
-      function requestPermission() {
-        console.log('Requesting permission...');
-        Notification.requestPermission().then((permission) => {
-          if (permission === 'granted') {
-            console.log('Notification permission granted.');
-            resetUI();
-          } else {
-            console.log('Unable to get permission to notify.');
-          }
-        });
-      }
-
-      resetUI();
-    } catch (e) {
-      console.log("firebase startup error ", e);
-    }
-  </script>
   <title>
     <%= htmlWebpackPlugin.options.title %>
   </title>

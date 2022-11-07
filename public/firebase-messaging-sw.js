@@ -17,4 +17,4 @@ onBackgroundMessage(messaging, (payload) => {
   self.registration.showNotification(notificationTitle, notificationOptions);
 });
 
-// export default messaging;
+export default messaging;

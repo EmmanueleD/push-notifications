@@ -1,5 +1,7 @@
-importScripts("https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js");
-importScripts("https://www.gstatic.com/firebasejs/8.2.7/firebase-messaging.js");
+importScripts("https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js");
+importScripts(
+  "https://www.gstatic.com/firebasejs/9.13.0/firebase-messaging.js"
+);
 
 import { onBackgroundMessage } from "firebase/messaging/sw";
 

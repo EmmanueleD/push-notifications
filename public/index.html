@@ -30,7 +30,7 @@
       });
 
       function resetUI() {
-        const vapidKey = '<>'; //from firebase project settings
+        const vapidKey = 'BLOjYR6_W7SCWT3iloqWTuZjHdesGtTTdr4zVWU0JjeyebtKGl1exIL7f3nIqy6pZDTLTD-o0bTEdAYYGA-Qm_0'; //from firebase project settings
         messaging.getToken({ vapidKey: vapidKey }).then((currentToken) => {
           console.log("currentToken", currentToken);
           if (currentToken) {

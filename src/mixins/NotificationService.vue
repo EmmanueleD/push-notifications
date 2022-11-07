@@ -3,15 +3,29 @@
 // import { onBackgroundMessage } from "firebase/messaging/sw";
 import { onMessage } from "firebase/messaging";
 import { getToken } from 'firebase/messaging'
+import { onBackgroundMessage } from "firebase/messaging/sw";
 export default {
   name: 'NotificationService',
   mounted() {
     onMessage(this.$messaging, (payload) => {
       console.log('frontend push', payload);
-
-
       // eslint-disable-next-line no-unused-vars
-      const notification = new Notification("Hi there!")
+      const notification = new Notification(payload.notification.title, { body: payload.notification.body });
+    })
+    onBackgroundMessage(this.$messaging, (payload) => {
+      console.log(
+        "[firebase-messaging-sw.js] Received background message ",
+        payload
+      );
+      // eslint-disable-next-line no-unused-vars
+      const notification = new Notification(payload.notification.title, { body: payload.notification.body });
+      // // Customize notification here
+      // const notificationTitle = "Background Message Title";
+      // const notificationOptions = {
+      //   body: "Background Message body.",
+      //   icon: "/firebase-logo.png",
+      // };
+      // self.registration.showNotification(notificationTitle, notificationOptions);
     });
   },
   methods: {
@@ -21,7 +35,6 @@ export default {
           console.log('Notification permission granted.');
 
           // eslint-disable-next-line no-unused-vars
-          var notification = new Notification('ciao mamma')
 
           // Get Token
           getToken(this.$messaging, { vapidKey: 'BLOjYR6_W7SCWT3iloqWTuZjHdesGtTTdr4zVWU0JjeyebtKGl1exIL7f3nIqy6pZDTLTD-o0bTEdAYYGA-Qm_0' })
@@ -57,6 +70,6 @@ export default {
         console.log('Unable to get permission to notify.', err);
       });
     }
-  }
+  },
 }
 </script>

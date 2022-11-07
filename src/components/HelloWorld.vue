@@ -32,7 +32,6 @@
       <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
     </ul>
-    <button type="button" @click="notify">Show notification</button>
   </div>
 </template>
 
@@ -43,15 +42,7 @@ export default {
     msg: String
   },
   methods: {
-    notify() {
-      console.log('trigger notifica')
-      Notification.requestPermission().then(res => {
-        if (res === 'granted') {
-          console.log('dentro if notifica')
-          new Notification({ title: 'ciao bisso' })
-        }
-      })
-    }
+
   }
 }
 </script>

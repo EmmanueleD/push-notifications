@@ -13,7 +13,8 @@ export default {
     HelloWorld
   },
   created() {
-    this.$root.setNotificationToken();
+    // this.$root.setNotificationToken();
+    console.log('messaging from app.vue', this.$messaging)
   }
 
 }
